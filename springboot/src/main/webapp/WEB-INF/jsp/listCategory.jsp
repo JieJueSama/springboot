@@ -25,6 +25,16 @@
 		</c:forEach>
 	</table>
 	<br>
-	<div></div>
+	<div>
+		<a href="?start=0">[首页]</a>
+		<a href="?start=${page.number-1 }">[上一页]</a>
+		<a href="?start=${page.number+1 }">[下一页]</a>
+		<a href="?start=${page.totalPages-1}">[末 页]</a>
+	</div>
+	<br>
+	<form action="addCategory" method="post">
+		name:<input name="name"> <br>
+		<button type="submit">提交</button>
+	</form>
 </body>
 </html>
