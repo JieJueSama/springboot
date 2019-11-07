@@ -23,5 +23,30 @@ public class CategoryController {
 		
 		return "listCategory";
 	}
+	
+	@RequestMapping("/addCategory")
+	public String addCategory(Category c) throws Exception{
+		categoryDAO.save(c);
+		return "redirect:listCategory";
+	}
+	
+	@RequestMapping("/deleteCategory")
+	public String deleteCategory(Category c) throws Exception{
+		categoryDAO.delete(c);
+		return "redirect:listCategory";
+	}
+	
+	@RequestMapping("/updateCategory")
+	public String updateCategory(Category c) throws Exception{
+		categoryDAO.save(c);
+		return "redirect:listCategory";
+	}
+	
+	@RequestMapping("/editCategory")
+	public String editCategory(int id, Model m) throws Exception{
+		Category c = categoryDAO.getOne(id);
+		m.addAttribute("c", c);
+		return "editCategory";
+	}
 
 }
