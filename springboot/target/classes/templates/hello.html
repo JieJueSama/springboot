@@ -2,11 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8"></meta>
+<link rel="stylesheet" type="text/css" media="all" href="../../webapp/static/css/style.css" th:href="@{/static/css/style.css}"/>
+<script type="text/javascript" src="../../webapp/static/js/thymeleaf.js" th:src="@{/static/js/thymeleaf.js}"></script>
 <title>Insert title here</title>
+<script>
+	testFunction();
+</script>
 </head>
 <body>
-	<p th:text="${name}">name</p>
-	<p th:text="'Hello!	' + ${name} + '!'">hello world</p>
-	<p th:text="|Hello! ${name}!|">hello world</p>
+	<div class="showing">
+		<p th:text="${name}">name</p>
+		<p th:text="'Hello!	' + ${name} + '!'">hello world</p>
+		<p th:text="|Hello! ${name}!|">hello world</p>
+	</div>
 </body>
 </html>
