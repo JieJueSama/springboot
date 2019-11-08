@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+<body>
+	<input type="button" value="通过AJAX获取多个分类对象" id="sender">
+	
+	<div id="messageDiv"></div>
+	
+	<script type="text/javascript">
+		$('#sender').click(function(){
+			var url = "category?start=0&size=100";
+			
+			$.get(url, function(data){
+				var categorys = data;
+				for(i in categorys){
+					var old = $("#messageDiv").html();
+					var category = categorys[i];
+					$("#messageDiv").html(old + "<br>" + category.id + "  ------  " + category.name);
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
