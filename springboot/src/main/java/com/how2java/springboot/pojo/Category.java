@@ -7,11 +7,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 //表明实体类
 @Entity
 //表明这个类对应的表名是category_
 @Table(name = "category_")
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
 public class Category {
 	
 	//表明是主键
@@ -40,6 +43,13 @@ public class Category {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + "]";
+	}
+	
+	
 	
 	
 
