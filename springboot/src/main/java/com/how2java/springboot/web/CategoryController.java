@@ -19,12 +19,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.how2java.springboot.dao.CategoryDAO;
 import com.how2java.springboot.pojo.Category;
+import com.how2java.springboot.service.CategoryService;
+import com.how2java.springboot.util.Page4Navigator;
 
 @Controller
 public class CategoryController {
 	
 	@Autowired
-	CategoryDAO categoryDAO;
+	CategoryService categoryService;
 	
 	@GetMapping("/categories")
 	public String listCategory(Model m,
@@ -35,13 +37,13 @@ public class CategoryController {
 		
 		Sort sort = new Sort(Sort.Direction.DESC, "id");
 		Pageable pageable = new PageRequest(start, size, sort);
-		Page<Category> page = categoryDAO.findAll(pageable);
+		Page4Navigator<Category> page = categoryService.list(pageable);
 		
-		System.out.println(page.getNumber());
-		System.out.println(page.getNumberOfElements());
-		System.out.println(page.getSize());
-		System.out.println(page.getTotalElements());
-		System.out.println(page.getTotalPages());
+//		System.out.println(page.getNumber());
+//		System.out.println(page.getNumberOfElements());
+//		System.out.println(page.getSize());
+//		System.out.println(page.getTotalElements());
+//		System.out.println(page.getTotalPages());
 		
 		m.addAttribute("page", page);
 		
@@ -51,25 +53,25 @@ public class CategoryController {
 	
 	@PostMapping("/categories")
 	public String addCategory(Category c) throws Exception{
-		categoryDAO.save(c);
+		categoryService.save(c);
 		return "redirect:/categories";
 	}
 	
 	@DeleteMapping("/categories/{id}")
 	public String deleteCategory(Category c) throws Exception{
-		categoryDAO.delete(c);
+		categoryService.delete(c.getId());
 		return "redirect:/categories";
 	}
 	
 	@PutMapping("/categories/{id}")
 	public String updateCategory(Category c) throws Exception{
-		categoryDAO.save(c);
+		categoryService.save(c);
 		return "redirect:/categories";
 	}
 	
 	@GetMapping("/categories/{id}")
 	public String editCategory(@PathVariable("id")int id, Model m) throws Exception{
-		Category c = categoryDAO.getOne(id);
+		Category c = categoryService.get(id);
 		m.addAttribute("c", c);
 		return "editCategory";
 	}
