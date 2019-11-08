@@ -29,9 +29,15 @@ public class CategoryController {
 		start = start < 0 ? 0 : start;
 		
 		Sort sort = new Sort(Sort.Direction.DESC, "id");
-		Pageable pageabel = new PageRequest(start, size, sort);
-		Page<Category> page = categoryDAO.findAll(pageabel);
-		List<Category> cs = categoryDAO.findAll();
+		Pageable pageable = new PageRequest(start, size, sort);
+		Page<Category> page = categoryDAO.findAll(pageable);
+		
+		System.out.println(page.getNumber());
+		System.out.println(page.getNumberOfElements());
+		System.out.println(page.getSize());
+		System.out.println(page.getTotalElements());
+		System.out.println(page.getTotalPages());
+		
 		m.addAttribute("page", page);
 		
 		
